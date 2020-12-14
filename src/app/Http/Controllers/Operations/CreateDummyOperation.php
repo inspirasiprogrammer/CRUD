@@ -15,9 +15,9 @@ trait CreateDummyOperation
      */
     protected function setupCreateDummyRoutes($segment, $routeName, $controller)
     {
-        Route::post($segment . '/create-dummy', [
-            'as' => $routeName . '.createDummy',
-            'uses' => $controller . '@createDummy',
+        Route::post($segment.'/create-dummy', [
+            'as' => $routeName.'.createDummy',
+            'uses' => $controller.'@createDummy',
             'operation' => 'createDummy',
         ]);
     }
@@ -51,7 +51,7 @@ trait CreateDummyOperation
         $this->crud->hasAccessOrFail('createDummy');
 
         // Check if Model has Factory trait
-        if (!method_exists($this->crud->getModel(), 'factory')) {
+        if (! method_exists($this->crud->getModel(), 'factory')) {
             return response()->json([
                 'title' => trans('backpack::crud.create_dummy_error_title'),
                 'message' => trans('backpack::crud.create_dummy_error_message'),
@@ -82,5 +82,4 @@ trait CreateDummyOperation
             'message' => join(' ', $messages),
         ]);
     }
-
 }
